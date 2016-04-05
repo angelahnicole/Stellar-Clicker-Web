@@ -1,6 +1,7 @@
 <?php
 
-return [
+return 
+[
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +70,8 @@ return [
             'engine' => null,
         ],
 
-        'pgsql' => [
+        'pgsql' => 
+        [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '5432'),

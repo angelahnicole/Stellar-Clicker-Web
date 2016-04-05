@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Stellar Clicker</div>
+                <div class="title">The Stellar Clicker Wiki</div>
             </div>
         </div>
     </body>

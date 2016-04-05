@@ -13,10 +13,20 @@
 
 Route::group(['middleware' => ['web']], function () 
 {
-
+    
+    Route::group(['domain' => 'wiki.stellar.polymorphixgaming.com'], function () 
+    {
+       Route::get('', function()
+        {
+            return view('wiki');
+        });
+    });
+    
     Route::get('', function()
     {
         return view('welcome');
     });
+    
+    
 
 });
