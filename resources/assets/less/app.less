@@ -1,0 +1,289 @@
+@import url(https://fonts.googleapis.com/css?family=Rubik+Mono+One|Syncopate);
+@import "bootstrap/bootstrap.less";
+
+// ================================================================================================================================
+// Application Styling
+// --------------------------------------------------------------------------------------------------------------------------------
+// Polymorphix Gaming: Stellar Clicker
+// https://github.com/angelahnicole/Stellar-Clicker-Web
+// @author Angela Gross
+// ================================================================================================================================
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ------------------------------------------------------------------------------------------------------------------------------
+// VARIABLES
+// ------------------------------------------------------------------------------------------------------------------------------
+@footer-height: 40px;
+@stacked-nav-border:  #334A5F;
+@number-windows: 5;
+@link-color: #97D27A;
+@highlight-color: #945158;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ------------------------------------------------------------------------------------------------------------------------------
+// GLOBAL
+// ------------------------------------------------------------------------------------------------------------------------------
+
+// Link color
+a { color: @link-color; }
+a:hover { color: darken(@link-color, 20%); }
+
+// Footer height fixes
+html, body { height: 100%; min-height: 100%; }
+
+// Fixed navigation padding
+body { padding-top: 70px; }
+
+// Smaller header captions
+h1 small, .h1 small, .h1 .small, h1 .small{ font-size: 55%; }
+h2 small, .h2 small, .h2 .small, h2 .small{ font-size: 55%; }
+
+.no-top-margin{ margin-top: 0px!important; }
+
+.small-bottom-margin {margin-bottom: 10px!important; }
+
+.width6 { width: 16.6667%; }
+.width5 { width: 20%; }
+.width4 { width: 25%; }
+.width3 { width: 33.3333%; }
+.width16 { width: 6.6667%; }
+
+th, td { white-space: nowrap; text-align: center; }
+
+table.commands th, table.commands td 
+{ 
+    white-space: normal; 
+    text-align: left; 
+    ul { padding-left: 0px; }
+}
+
+.bottom-margin { margin-bottom: 20px; }
+
+
+.minwidth { min-width:100px; width: auto !important; width: 100px; }
+
+// Main container wrapper
+#wrapper
+{
+    display:block;
+    min-height: 100%;
+    height: auto !important;
+    width: auto;
+    margin: 2%; 
+    margin-top: 0px;
+}
+
+.container-fluid { max-width: 1400px; }
+
+#main
+{
+    padding-bottom: (@footer-height + 20);
+}
+
+.footer
+{
+    position: relative;
+    margin-top: -@footer-height;
+    height: @footer-height;
+    clear: both;
+    padding-top: 23px;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ------------------------------------------------------------------------------------------------------------------------------
+// MAVBAR
+// ------------------------------------------------------------------------------------------------------------------------------
+
+.navbar-default
+{
+    background-color: #ffffff;
+    border: 1px solid #ededed;
+}
+
+.nav-container
+{
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+}
+
+.navbar-nav, h1, h2, h3, h4, h5, h6
+{
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+.navbar-default .navbar-nav
+{
+    font-size: 1.5em;
+    li > a:hover { color: @highlight-color; }
+}
+
+.navbar-brand
+{
+    font-family: 'Syncopate', sans-serif;
+    font-size: 2em;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ------------------------------------------------------------------------------------------------------------------------------
+// COLOR AND IMAGE STYLING
+// ------------------------------------------------------------------------------------------------------------------------------
+
+.grayscale-img
+{
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+}
+
+.color-scale-img
+{
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    -o-filter: grayscale(0%);
+    -ms-filter: grayscale(0%);
+}
+
+.gray-to-color-hover
+{
+    .grayscale-img;
+    &:hover { .color-scale-img; }
+}
+
+.color-to-gray-hover
+{
+    .color-scale-img;
+    &:hover { .grayscale-img; }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ------------------------------------------------------------------------------------------------------------------------------
+// MAIN PAGE
+// ------------------------------------------------------------------------------------------------------------------------------
+
+a.front-nav { .gray-to-color-hover; &.active { .color-scale-img; } }
+
+.small-right
+{
+    float: right !important;
+    margin-right: -15px;
+}
+
+.front-page-header
+{
+    .page-header;
+    .small, small { .small-right; color: @highlight-color; text-transform: uppercase; }
+    h1, .h1 {  padding: 0px; margin: 0px; }
+    h2, .h2 {  padding: 0px; margin: 0px; }
+    .color-to-gray-hover;
+}
+
+.front-page-tag
+{
+    border: none;
+    width: 30px;
+    height: 100%;
+    background-color: #000;
+    display: inline-block;
+    padding-left: 6px;
+    padding-top: 6px;
+    vertical-align: text-bottom;
+    .glyphicon { width: 30px; height: 30px; }   
+}
+
+.front-page-panel
+{
+    .panel;
+    .panel-default;
+    padding: 20px;
+    border-color: lighten(@table-border-color, 10%);
+}
+
+.front-page-nav-tabs{ font-size: 180%; }
+
+.front-page-nav-command-tabs { padding: 20px; }
+
+.teaser { font-size: 300%; font-weight: 700; }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ------------------------------------------------------------------------------------------------------------------------------
+// HOME PAGE
+// ------------------------------------------------------------------------------------------------------------------------------
+
+.banner-link
+{
+    .thumbnail;
+    display:block;
+    height:500px;
+}
+
+.banner-link-blog
+{
+    .banner-link;
+    background:transparent url('../imx/dev-blog_normal.png') center top no-repeat;
+}
+
+.banner-link-forum
+{
+    .banner-link;
+    background:transparent url('../imx/game-forum_normal.png') center top no-repeat;
+}
+
+.banner-link-wiki
+{
+    .banner-link;
+    background:transparent url('../imx/game-wiki_normal.png') center top no-repeat;
+}
+
+
+.nav-stacked-container { border: 1px dotted @stacked-nav-border; }
+
+.thumbnail { margin: auto; }
+
+.thumbnail.with-caption
+{
+    display: inline-block;
+    margin-bottom: 20px;   
+    p
+    {
+      margin: 0;
+      padding-top: 0.5em;
+      font-size: 15px!important;
+    }
+    small:before
+    {
+      content: '\2014 \00A0';
+    }
+    small
+    {
+      width: 100%;
+      text-align: right;
+      display: inline-block;
+      color: #999;
+    }
+}
+
+.map-image
+{
+    .thumbnail;
+    .thumbnail.with-caption;
+    border: 0px;
+}
+
+.bigger-font
+{
+    font-weight: 500;
+    font-size: 110%;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
