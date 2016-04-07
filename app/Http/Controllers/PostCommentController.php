@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 // ===============================================================================================================
-// Admin Controller
+// Post Comment Controller
 // ---------------------------------------------------------------------------------------------------------------
 // Stellar Clicker
 // https://github.com/angelahnicole/Stellar-Clicker-Web
@@ -17,7 +17,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // 
 // ===============================================================================================================
 
-class AdminController extends BaseController
+class PostCommentController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     
@@ -36,35 +36,77 @@ class AdminController extends BaseController
     // ------------------------------------------------------------------------------------------------------------------------------
 	
     /**
-     * Creates the control panel view for the blogger or admin user
+     * 
      *
-     * @return View (home page)
+     * 
      */
-    public function controlPanel()
+    public function index()
     {
-        // Get basic information for home page
-        $this->data['title'] = "SC Blog Control Panel";
-        $this->data['showDefaultNotifcations'] = true;
-        $this->data['showNav'] = true;
         
-        // Get the currently logged in user
-
-        return view('blog.control_panel', $this->data);
+    }	
+    
+    /**
+     * 
+     *
+     * 
+     */
+    public function create()
+    {
+        
     }
     
     /**
-     * Creates home page view for the blogger user
+     * 
      *
-     * @return View (home page)
+     * 
      */
-    public function createPost()
+    public function show($post, $comment)
     {
-        // Get basic information for home page
-        $this->data['title'] = "Create SC Blog Post";
-        $this->data['showDefaultNotifcations'] = true;
-        $this->data['showNav'] = true;
-
-        return view('blog.create_post', $this->data);
+        
+    }
+    
+    /**
+     * 
+     *
+     * 
+     */
+    public function edit($post, $comment)
+    {
+        
+    }
+    
+    // ------------------------------------------------------------------------------------------------------------------------------
+    // DATA MODIFIERS
+    // ------------------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * 
+     *
+     * 
+     */
+    public function store()
+    {
+        
+    }
+    
+    /**
+     * 
+     *
+     * 
+     */
+    public function update($post, $comment)
+    {
+        
+    }
+    
+    /**
+     * 
+     *
+     * 
+     */
+    public function destroy($post, $comment)
+    {
+        
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

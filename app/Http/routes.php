@@ -22,13 +22,54 @@ Route::group(['middleware' => ['web']], function ()
     
     Route::group(['domain' => 'blog.stellar.polymorphixgaming.com'], function () 
     {
-       Route::get('', 'BlogController@index')->name('index');
+        // -------------------------------------------------------------------------------
+        // MAIN BLOG ROUTES
+        // -------------------------------------------------------------------------------
+        Route::group(['as' => 'blog::'], function () 
+        {
+            // ---------------------------------------------------------------------------
+            // POST RESOURCE CONTROLLER
+            // Contains routes for index, create, store, show, edit, update, and destroy
+            // ---------------------------------------------------------------------------
+            Route::resource("post", "PostController");
+            
+            // ---------------------------------------------------------------------------
+            // POST COMMENT RESOURCE CONTROLLER
+            // Contains nested resource routes for index, create, store, show, edit, 
+            // update, and destroy
+            // ---------------------------------------------------------------------------
+            Route::resource("post.comment", "PostCommentController");
+            
+            // ---------------------------------------------------------------------------
+            // USER RESOURCE CONTROLLER
+            // Handles logging in, registering, redirecting users to their home page, and
+            // contains routes for create, store, edit, update, and destroy
+            // ---------------------------------------------------------------------------
+            Route::resource("user", "UserController", ['except' => ['index, show']]);
+            Route::group(['as' => 'user.'], function () 
+            {
+                Route::get('user/login', 'UserController@login')->name('login');
+                Route::get('home', 'UserController@home')->name('home');
+            });
+        });
+        
+        // -------------------------------------------------------------------------------
+        // API ROUTES
+        // -------------------------------------------------------------------------------
+        Route::group(['as' => 'api::'], function () 
+        {
+            // ---------------------------------------------------------------------------
+            // API BLOG ROUTES
+            // ---------------------------------------------------------------------------
+            
+        });
+        
     });
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     // --------------------------------------------------------------------------------------------------------------------------
-    // FRONT END
+    // STELLAR CLICKER FRONT END
     // --------------------------------------------------------------------------------------------------------------------------
     
     Route::get('', 'HomeController@index')->name('index');
