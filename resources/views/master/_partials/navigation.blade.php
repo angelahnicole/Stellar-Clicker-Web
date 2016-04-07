@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ url('/') }}"><span class="glyphicon icon-polymorphix"></span>Stellar Clicker </a>
+      <a class="navbar-brand" href="{{ route('stellar::home') }}"><span class="glyphicon icon-polymorphix"></span>Stellar Clicker </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
