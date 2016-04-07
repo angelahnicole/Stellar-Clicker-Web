@@ -166,6 +166,79 @@ table.commands th, table.commands td
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // ------------------------------------------------------------------------------------------------------------------------------
+// ICONS
+// ------------------------------------------------------------------------------------------------------------------------------
+
+// Polymorphix icon
+.icon-polymorphix
+{
+    background:url('../imx/navigation/polymorphix_icon.png') 0 0 no-repeat;
+    background-size:40px 40px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+
+// Windows Icon
+.icon-windows
+{
+    background:url('../imx/windows-computer_icon.png') 0 0 no-repeat;
+    background-size:40px 40px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+// Linux Icon
+.icon-linux
+{
+    background:url('../imx/linux-computer_icon.png') 0 0 no-repeat;
+    background-size:40px 40px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+// OSX Icon
+.icon-osx
+{
+    background:url('../imx/osx-computer_icon.png') 0 0 no-repeat;
+    background-size:40px 40px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+// Android Icon
+.icon-android
+{
+    background:url('../imx/android-mobile_icon.png') 0 0 no-repeat;
+    background-size:40px 40px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+// iOS Icon
+.icon-ios
+{
+    background:url('../imx/ios-mobile_icon.png') 0 0 no-repeat;
+    background-size:40px 40px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ------------------------------------------------------------------------------------------------------------------------------
 // MAIN PAGE
 // ------------------------------------------------------------------------------------------------------------------------------
 
@@ -272,18 +345,67 @@ a.front-nav { .gray-to-color-hover; &.active { .color-scale-img; } }
     }
 }
 
-.map-image
-{
-    .thumbnail;
-    .thumbnail.with-caption;
-    border: 0px;
-}
-
 .bigger-font
 {
     font-weight: 500;
     font-size: 110%;
 }
+
+.download-block
+{
+    .text-center;
+    display: block;
+    padding: 50px 0px;
+    color: #ffffff;
+    font-family: 'Rubik Mono One', sans-serif;
+    
+    &.disabled
+    {
+        cursor: not-allowed;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        opacity: .65;
+    }
+}
+
+.windows-download-block
+{
+    .download-block;
+    background-color: #7B3599;
+}
+
+.linux-download-block
+{
+    .download-block;
+    background-color: #F5804A;
+}
+
+.osx-download-block
+{
+    .download-block;
+    background-color: #42a1ec;
+}
+
+.filler-download-block
+{
+    .download-block;
+    background-color: #000000;
+}
+
+.android-download-block
+{
+    .download-block;
+    background-color: #5AC724;
+}
+
+.ios-download-block
+{
+    .download-block;
+    background-color: #6486A0;
+}
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
