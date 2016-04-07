@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // https://github.com/angelahnicole/Stellar-Clicker-Web
 // Angela Gross
 // ---------------------------------------------------------------------------------------------------------------
-// Controller for the home page. Also handles logging in.
+// Controller for all of the different homepages for the website.
 // ===============================================================================================================
 
 class HomeController extends BaseController
@@ -38,7 +38,7 @@ class HomeController extends BaseController
     /**
      * Creates home page view for end-user.
      *
-     * @return View (home page)
+     * @return View (stellar home page)
      */
     public function stellarHome()
     {
@@ -53,7 +53,7 @@ class HomeController extends BaseController
     /**
      * Creates home page view for end-user.
      *
-     * @return View (home page)
+     * @return View (blog home page)
      */
     public function blogHome()
     {
@@ -68,7 +68,7 @@ class HomeController extends BaseController
     /**
      * Creates home page view for end-user.
      *
-     * @return View (home page)
+     * @return View (wiki home page)
      */
     public function wikiHome()
     {
