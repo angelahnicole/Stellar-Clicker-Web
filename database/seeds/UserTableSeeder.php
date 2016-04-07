@@ -3,16 +3,17 @@
 use Illuminate\Database\Seeder;
 
 // ===============================================================================================================
-// Database Seeder
+// User Table Seeder
 // ---------------------------------------------------------------------------------------------------------------
 // Stellar Clicker
 // https://github.com/angelahnicole/Stellar-Clicker-Web
 // Angela Gross
 // ---------------------------------------------------------------------------------------------------------------
-// 
+// Creates admin, blogger, normal, and throttled users using the Model Factory. Note that the GroupTableSeeder 
+// should be ran before this one.
 // ===============================================================================================================
 
-class DatabaseSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -23,17 +24,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Create predefined user groups
-        $this->call(GroupTableSeeder::class);
-        
-        // Create users
-        $this->call(UserTableSeeder::class);
-        
-        // Create blog posts from admins and bloggers
-        $this->call(BlogPostTableSeeder::class);
-        
-        // Create comments to those blog posts
-        $this->call(BlogCommentTableSeeder::class);
+        // Create random users
+        $adminUsers = factory(App\Models\User::class, 'admin', 2)->create();
+        $bloggerUsers = factory(App\Models\User::class, 'blogger', 5)->create();
+        $normalUsers = factory(App\Models\User::class, 'normal', 30)->create();
+        $throttledUsers = factory(App\Models\User::class, 'throttled', 5)->create();
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////

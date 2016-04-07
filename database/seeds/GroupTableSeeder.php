@@ -3,16 +3,16 @@
 use Illuminate\Database\Seeder;
 
 // ===============================================================================================================
-// Database Seeder
+// Group Table Seeder
 // ---------------------------------------------------------------------------------------------------------------
 // Stellar Clicker
 // https://github.com/angelahnicole/Stellar-Clicker-Web
 // Angela Gross
 // ---------------------------------------------------------------------------------------------------------------
-// 
+// Creates the four different permission user groups for the database.
 // ===============================================================================================================
 
-class DatabaseSeeder extends Seeder
+class GroupTableSeeder extends Seeder
 {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -23,17 +23,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Create predefined user groups
-        $this->call(GroupTableSeeder::class);
+        App\Models\Group::create
+        ([
+            'name' => 'admin',
+            'manage_users' => true,
+            'blog_post' => true,
+            'blog_comment' => true
+        ]);
         
-        // Create users
-        $this->call(UserTableSeeder::class);
+        App\Models\Group::create
+        ([
+            'name' => 'blogger',
+            'manage_users' => false,
+            'blog_post' => true,
+            'blog_comment' => true
+        ]);
         
-        // Create blog posts from admins and bloggers
-        $this->call(BlogPostTableSeeder::class);
+        App\Models\Group::create
+        ([
+            'name' => 'user',
+            'manage_users' => false,
+            'blog_post' => false,
+            'blog_comment' => true
+        ]);
         
-        // Create comments to those blog posts
-        $this->call(BlogCommentTableSeeder::class);
+        App\Models\Group::create
+        ([
+            'name' => 'throttled_user',
+            'manage_users' => false,
+            'blog_post' => false,
+            'blog_comment' => false
+        ]);
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
