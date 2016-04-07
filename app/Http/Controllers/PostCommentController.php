@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // https://github.com/angelahnicole/Stellar-Clicker-Web
 // Angela Gross
 // ---------------------------------------------------------------------------------------------------------------
-// 
+// This controller functions more 
 // ===============================================================================================================
 
 class PostCommentController extends BaseController
@@ -50,27 +50,7 @@ class PostCommentController extends BaseController
      *
      * 
      */
-    public function create()
-    {
-        
-    }
-    
-    /**
-     * 
-     *
-     * 
-     */
     public function show($post, $comment)
-    {
-        
-    }
-    
-    /**
-     * 
-     *
-     * 
-     */
-    public function edit($post, $comment)
     {
         
     }

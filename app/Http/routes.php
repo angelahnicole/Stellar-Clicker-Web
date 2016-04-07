@@ -36,17 +36,16 @@ Route::group(['middleware' => ['web']], function ()
             
             // ---------------------------------------------------------------------------
             // POST COMMENT RESOURCE CONTROLLER
-            // Contains nested resource routes for index, create, store, show, edit, 
-            // update, and destroy
+            // Contains nested resource routes for index, store, show, update, and destroy
             // ---------------------------------------------------------------------------
-            Route::resource("post.comment", "PostCommentController");
+            Route::resource("post.comment", "PostCommentController", ['except' => ['create', 'edit']]);
             
             // ---------------------------------------------------------------------------
             // USER RESOURCE CONTROLLER
             // Handles logging in, registering, redirecting users to their home page, and
             // contains routes for create, store, edit, update, and destroy
             // ---------------------------------------------------------------------------
-            Route::resource("user", "UserController", ['except' => ['index, show']]);
+            Route::resource("user", "UserController", ['except' => ['index', 'show']]);
             Route::group(['as' => 'user.'], function () 
             {
                 Route::get('user/login', 'UserController@login')->name('login');
@@ -59,9 +58,7 @@ Route::group(['middleware' => ['web']], function ()
         // -------------------------------------------------------------------------------
         Route::group(['as' => 'api::'], function () 
         {
-            // ---------------------------------------------------------------------------
-            // API BLOG ROUTES
-            // ---------------------------------------------------------------------------
+            
             
         });
         
