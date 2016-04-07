@@ -1,5 +1,16 @@
 @extends('master.master')
 
+<!-- ASSETS -->
+@section('assets')
+
+@parent
+
+<link rel="stylesheet" href="{{ asset('css/blog.css') }}">
+
+@stop
+<!-- /ASSETS -->
+
+<!-- CONTENT -->
 @section('content')
 
 
@@ -10,12 +21,9 @@
         <div class="col-xs-11"><h2>The Blog Home <small>Ahhh yeah.</small></h2></div>
     </div></div>
     
-</section> <!-- /GAME WIKI -->
+</section> 
 
 
 @stop
+<!-- /CONTENT -->
 
-@section('scripts')
-
-
-@append

@@ -6,8 +6,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('imx/favicon.ico')}}" />
-    
+
     @include('master._partials.assets')
+    @yield('assets')
         
 </head>
 <body>
