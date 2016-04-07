@@ -15,6 +15,7 @@ elixir(function(mix)
 {
     mix.less('app.less');
     mix.less('iframe.less');
+    mix.less('blog.less');
     
     mix.scriptsIn('resources/assets/js/jquery', 'public/js/jquery.js');
     mix.scriptsIn('resources/assets/js/bootstrap', 'public/js/bootstrap.js');
