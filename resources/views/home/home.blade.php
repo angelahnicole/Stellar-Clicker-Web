@@ -6,7 +6,7 @@
 <section class="window" id="home">
     
     <div class="front-page-header"><div class="row">
-        <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-blog"></div></div>
+        <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-tag"></div></div>
         <div class="col-xs-11"><h2>The Game <small>What is it?</small></h2></div>
     </div></div>
     
@@ -62,7 +62,7 @@
 <section class="window" id="blog">
 
     <div class="front-page-header"><div class="row">
-        <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-blog"></div></div>
+        <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-tag"></div></div>
         <div class="col-xs-11"><h2>Developer's Blog <small>What in the world are they thinking?</small></h2></div>
     </div></div>
         
@@ -74,7 +74,7 @@
 <section class="window leaderboard-window" id="forum">
 
      <div class="front-page-header"><div class="row">
-        <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-forum"></div></div>
+        <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-tag"></div></div>
         <div class="col-xs-11"><h2>Game Forum <small>What in the world are you thinking?</small></h2></div>
     </div></div>
     
@@ -86,7 +86,7 @@
 <section class="window leaderboard-window" id="wiki">
 
      <div class="front-page-header"><div class="row">
-        <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-wiki"></div></div>
+        <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-tag"></div></div>
         <div class="col-xs-11"><h2>Game Wiki <small>What does it mean?</small></h2></div>
     </div></div>
     
