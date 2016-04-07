@@ -33,6 +33,7 @@ class CreateInitialDatabase extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->boolean('manage_users')->default(false);
+            $table->boolean('manage_blog_posts')->default(false);
             $table->boolean('blog_post')->default(false);
             $table->boolean('blog_comment')->default(false);
             $table->timestamps();
@@ -64,6 +65,7 @@ class CreateInitialDatabase extends Migration
             $table->integer('user_id')->unsigned();
             $table->text('title_text');
             $table->text('body_text');
+            $table->string('slug_text', 100)->unique();
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('stellar_user');

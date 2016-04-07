@@ -27,6 +27,7 @@ class GroupTableSeeder extends Seeder
         ([
             'name' => 'admin',
             'manage_users' => true,
+            'manage_blog_posts' => true,
             'blog_post' => true,
             'blog_comment' => true
         ]);
@@ -35,6 +36,7 @@ class GroupTableSeeder extends Seeder
         ([
             'name' => 'blogger',
             'manage_users' => false,
+            'manage_blog_posts' => false,
             'blog_post' => true,
             'blog_comment' => true
         ]);
@@ -43,6 +45,7 @@ class GroupTableSeeder extends Seeder
         ([
             'name' => 'user',
             'manage_users' => false,
+            'manage_blog_posts' => false,
             'blog_post' => false,
             'blog_comment' => true
         ]);
@@ -51,6 +54,7 @@ class GroupTableSeeder extends Seeder
         ([
             'name' => 'throttled_user',
             'manage_users' => false,
+            'manage_blog_posts' => false,
             'blog_post' => false,
             'blog_comment' => false
         ]);

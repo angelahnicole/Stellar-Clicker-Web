@@ -32,7 +32,7 @@ class Group extends Model
      */
     protected $fillable = 
     [
-        'name', 'manage_users', 'blog_post', 'blog_comment'
+        'name', 'manage_users', 'manage_blog_posts', 'blog_post', 'blog_comment'
     ];
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -69,8 +69,8 @@ $factory->defineAs(App\Models\User::class, 'throttled', function (Faker\Generato
 {
     return 
     [
-        'email' => $faker->safeEmail,
-        'username' => $faker->userName,
+        'email' => $faker->unique()->safeEmail,
+        'username' => $faker->unique()->userName,
         'password' => bcrypt('throttled'),
         'group_id' => function()
         {
@@ -88,6 +88,7 @@ $factory->define(App\Models\BlogPost::class, function (Faker\Generator $faker)
     [
         'title_text' => $faker->words(3, true),
         'body_text' => $faker->paragraphs(20, true),
+        'slug_text' => $faker->unique()->slug,
     ];
 });
 
