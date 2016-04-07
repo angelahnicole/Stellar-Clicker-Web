@@ -20,32 +20,32 @@
 
         <div class="col-lg-1"></div>    
         
-        <a href="#" title="Windows Download Link" alt="Windows Download Link">
+        <a href="#" title="Windows Download Link" alt="Windows Download Link" class="download-block-link">
             <div class="col-lg-2 windows-download-block">
                 <span class="glyphicon icon-windows"></span> Windows
             </div>
         </a>
         
-        <a href="#" title="Linux Download Link" alt="Linux Download Link">
+        <a href="#" title="Linux Download Link" alt="Linux Download Link" class="download-block-link">
             <div class="col-lg-2 linux-download-block disabled">
                 <span class="glyphicon icon-linux"></span> Linux
             </div>
         </a>
         
-        <a href="#" title="OS X Download Link" alt="OS X Download Link">
+        <a href="#" title="OS X Download Link" alt="OS X Download Link" class="download-block-link">
             <div class="col-lg-2 osx-download-block disabled">
                 <span class="glyphicon icon-osx"></span> OS X
             </div>
         </a>
         
             
-        <a href="#" title="Android Download Link" alt="Android Download Link">
+        <a href="#" title="Android Download Link" alt="Android Download Link" class="download-block-link">
             <div class="col-lg-2 android-download-block disabled">
                 <span class="glyphicon icon-android"></span> Android
             </div>
         </a>
         
-        <a href="#" title="iOS Download Link" alt="iOS Download Link">
+        <a href="#" title="iOS Download Link" alt="iOS Download Link" class="download-block-link">
             <div class="col-lg-2 ios-download-block disabled">
                 <span class="glyphicon icon-ios"></span> iOS
             </div>
