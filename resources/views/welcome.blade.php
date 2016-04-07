@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">The Stellar Clicker Blog</div>
+                <div class="title">The Stellar Clicker</div>
             </div>
         </div>
     </body>

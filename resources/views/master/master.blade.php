@@ -14,7 +14,9 @@
 
     
     <!-- NAVIGATION BAR -->
-    @include('master._partials.navigation')  
+    @if(isset($showNav) && $showNav)
+        @include('master._partials.navigation')  
+    @endif
     <!-- /NAVIGATION BAR -->
     
     
@@ -58,7 +60,7 @@
     
     <!-- /FOOTER -->
     
-    
+
     @yield('scripts')
 
 </body>

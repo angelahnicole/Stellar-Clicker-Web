@@ -40,7 +40,7 @@ class HomeController extends BaseController
      *
      * @return View (home page)
      */
-    public function index()
+    public function stellarHome()
     {
         // Get basic information for home page
         $this->data['title'] = "Stellar Clicker: The Game";
@@ -49,6 +49,36 @@ class HomeController extends BaseController
 
         return view('home.home', $this->data);
     }	
+    
+    /**
+     * Creates home page view for end-user.
+     *
+     * @return View (home page)
+     */
+    public function blogHome()
+    {
+        // Get basic information for home page
+        $this->data['title'] = "Stellar Clicker: The Blog";
+        $this->data['showDefaultNotifcations'] = true;
+        $this->data['showNav'] = true;
+
+        return view('blog.home', $this->data);
+    }	
+    
+    /**
+     * Creates home page view for end-user.
+     *
+     * @return View (home page)
+     */
+    public function wikiHome()
+    {
+        // Get basic information for home page
+        $this->data['title'] = "Stellar Clicker: The Wiki";
+        $this->data['showDefaultNotifcations'] = true;
+        $this->data['showNav'] = true;
+
+        return view('wiki.home', $this->data);
+    }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
