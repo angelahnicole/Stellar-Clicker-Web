@@ -43,18 +43,6 @@
     <!-- /MAIN CONTAINER -->
     
     
-    {{-- FOOTER --}}
-    
-    <div class="footer">
-    
-        <div class="container-fluid">
-                polymorphix gaming 2016 :)       
-        </div>
-    </div>
-    
-    <!-- /FOOTER -->
-    
-    
     @yield('scripts')
 
 </body>
