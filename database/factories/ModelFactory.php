@@ -1,5 +1,7 @@
 <?php
 
+use GrahamCampbell\Markdown\Facades\Markdown;
+
 // ===============================================================================================================
 // Model Factories
 // ---------------------------------------------------------------------------------------------------------------
@@ -84,11 +86,13 @@ $factory->defineAs(App\Models\User::class, 'throttled', function (Faker\Generato
 // ------------------------------------------------------------------------------------------------------
 $factory->define(App\Models\BlogPost::class, function (Faker\Generator $faker) 
 {
+    
     return 
     [
         'title_text' => $faker->words(3, true),
-        'body_text' => $faker->paragraphs(20, true),
+        'body_text' => Markdown::convertToHtml($faker->paragraphs(20, true)),
         'slug_text' => $faker->unique()->slug,
+        'created_at' => $faker->dateTimeBetween('-1 years', 'now'),
     ];
 });
 

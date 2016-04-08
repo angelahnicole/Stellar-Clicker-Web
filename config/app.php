@@ -156,6 +156,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Krucas\Notification\NotificationServiceProvider::class,
+        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
 
     ],
 
@@ -203,6 +204,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Notification' => Krucas\Notification\Facades\Notification::class,
+        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
 
     ],
 
