@@ -54,9 +54,9 @@ Route::group(['middleware' => ['web']], function ()
         {
             // ---------------------------------------------------------------------------
             // POST COMMENT RESOURCE CONTROLLER
-            // Contains nested resource routes for index, store, show, update, and destroy
+            // Contains nested resource routes for index, store, update, and destroy
             // ---------------------------------------------------------------------------
-            Route::resource('post.comment', 'PostCommentController', ['except' => ['create', 'edit']]);
+            Route::resource('post.comment', 'PostCommentController', ['except' => ['create', 'edit', 'show']]);
         });
         
     });

@@ -19,7 +19,7 @@ use App\Models\Group;
 // https://github.com/angelahnicole/Stellar-Clicker-Web
 // Angela Gross
 // ---------------------------------------------------------------------------------------------------------------
-// This controller works with the jQuery comments app to get, create, edit, and delete comments.
+// This controller works with the jQuery comments library to get, create, edit, and delete comments.
 // ===============================================================================================================
 
 class PostCommentController extends BaseController
@@ -28,14 +28,12 @@ class PostCommentController extends BaseController
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
-    // ------------------------------------------------------------------------------------------------------------------------------
-    // VIEW CREATORS 
-    // ------------------------------------------------------------------------------------------------------------------------------
-	
     /**
-     * 
+     * Returns all comments associated with the given post.
      *
+     * @param int $post Post ID
      * 
+     * @return Response HTTP response with the blog comments
      */
     public function index($post)
     {
@@ -62,23 +60,12 @@ class PostCommentController extends BaseController
     }	
     
     /**
-     * 
+     * Creates a new comment that is a child of the given post
      *
+     * @param Request $request Request object that holds HTTP Request info
+     * @param int $post Post ID
      * 
-     */
-    public function show($post, $comment)
-    {
-        
-    }
-    
-    // ------------------------------------------------------------------------------------------------------------------------------
-    // DATA MODIFIERS
-    // ------------------------------------------------------------------------------------------------------------------------------
-    
-    /**
-     * 
-     *
-     * 
+     * @return Response HTTP response with the new blog comment
      */
     public function store(Request $request, $post)
     {
@@ -112,9 +99,13 @@ class PostCommentController extends BaseController
     }
     
     /**
-     * 
+     * Updates a comment that is a child of the given post
      *
+     * @param Request $request Request object that holds HTTP Request info
+     * @param int $post Post ID
+     * @param int $comment Comment ID
      * 
+     * @return Response HTTP response with the updated blog comment
      */
     public function update(Request $request, $post, $comment)
     {
@@ -131,13 +122,20 @@ class PostCommentController extends BaseController
     }
     
     /**
-     * 
+     * Deletes a comment that is a child of the given post
      *
+     * @param int $post Post ID
+     * @param int $comment Comment ID
      * 
+     * @return Response HTTP response with the deleted blog comment
      */
     public function destroy($post, $comment)
     {
+        $deletedComment = BlogComment::find($comment);
         
+        $deletedComment->delete();
+        
+        return Response::make($deletedComment->toJson(), 200, array('Content-Type' => 'application/json'));
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

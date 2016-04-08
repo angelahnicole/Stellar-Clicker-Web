@@ -120,6 +120,19 @@
                     },
                     error: error
                 });
+            },
+            
+            deleteComment: function(commentJSON, success, error) 
+            {
+                var deleteURL = "/api/post/{{ $post->id }}/comment/" + commentJSON.id;
+                
+                $.ajax
+                ({
+                    type: 'delete',
+                    url: deleteURL,
+                    success: success,
+                    error: error
+                });
             }
         });
     });
