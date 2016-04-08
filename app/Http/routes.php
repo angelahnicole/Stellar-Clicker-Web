@@ -26,7 +26,7 @@ Route::group(['middleware' => ['web']], function ()
         // -------------------------------------------------------------------------------
         Route::group(['as' => 'blog::'], function () 
         {
-            Route::get('', 'HomeController@blogHome')->name('home');
+            Route::get('', 'PostController@index')->name('home');
             
             // ---------------------------------------------------------------------------
             // POST RESOURCE CONTROLLER

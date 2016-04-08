@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Models\BlogPost;
 
 // ===============================================================================================================
 // Post Controller
@@ -36,13 +37,21 @@ class PostController extends BaseController
     // ------------------------------------------------------------------------------------------------------------------------------
 	
     /**
-     * 
+     * Creates home page view for end-user.
      *
-     * 
+     * @return View (blog home page)
      */
     public function index()
     {
+        // Get basic information for home page
+        $this->data['title'] = "Stellar Clicker: The Blog";
+        $this->data['showDefaultNotifcations'] = true;
+        $this->data['showNav'] = true;
         
+        // Get all blog posts
+        $this->data['posts'] = BlogPost::orderBy('created_at', 'desc')->paginate(3);
+
+        return view('blog.home', $this->data);
     }	
     
     /**

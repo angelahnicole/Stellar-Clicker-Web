@@ -16,10 +16,26 @@
 
 <section class="window" id="home">
     
-<div class="front-page-header"><div class="row">
-        <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-blog"></div></div>
-        <div class="col-xs-11"><h2>The Blog Home <small>Ahhh yeah.</small></h2></div>
+    @foreach ($posts as $post)
+    
+    <div class="front-page-header"><div class="row">
+            <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-tag"></div></div>
+            <div class="col-xs-11"><h2>{{ $post->title_text }}<small>{{ $post->user->username }} // {{ $post->created_at->format('M j, Y') }}</small></h2></div>
+            
+            
     </div></div>
+    
+    <div class="front-page-panel">
+                
+        {!! $post->body_text !!}
+                
+    </div>
+    
+    @endforeach
+    
+    <div class="container-fluid text-center">
+        {!! $posts->render() !!}
+    </div>
     
 </section> 
 

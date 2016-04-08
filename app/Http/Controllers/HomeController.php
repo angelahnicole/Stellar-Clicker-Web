@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // https://github.com/angelahnicole/Stellar-Clicker-Web
 // Angela Gross
 // ---------------------------------------------------------------------------------------------------------------
-// Controller for all of the different homepages for the website.
+// Controller for all of the different homepages for the website. (Except blog, as that has its own controllers)
 // ===============================================================================================================
 
 class HomeController extends BaseController
@@ -48,22 +48,7 @@ class HomeController extends BaseController
         $this->data['showNav'] = false;
 
         return view('home.home', $this->data);
-    }	
-    
-    /**
-     * Creates home page view for end-user.
-     *
-     * @return View (blog home page)
-     */
-    public function blogHome()
-    {
-        // Get basic information for home page
-        $this->data['title'] = "Stellar Clicker: The Blog";
-        $this->data['showDefaultNotifcations'] = true;
-        $this->data['showNav'] = true;
-
-        return view('blog.home', $this->data);
-    }	
+    }		
     
     /**
      * Creates home page view for end-user.
