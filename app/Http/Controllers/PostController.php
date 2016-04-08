@@ -65,12 +65,21 @@ class PostController extends BaseController
     }
     
     /**
-     * 
+     * Shows a blog page with its comments for end-user.
      *
-     * 
+     * @return View (blog page)
      */
-    public function show()
+    public function show($post)
     {
+        // Get basic information for home page
+        $this->data['title'] = "Stellar Clicker: The Blog";
+        $this->data['showDefaultNotifcations'] = true;
+        $this->data['showNav'] = true;
+        
+        // Get blog post
+        $this->data['post'] = BlogPost::find($post);
+        
+        return view('blog.blog', $this->data);
         
     }
     

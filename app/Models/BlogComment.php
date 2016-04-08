@@ -32,7 +32,7 @@ class BlogComment extends Model
      */
     protected $fillable = 
     [
-        'body_text'
+        'body_text', 'blog_post_id', 'blog_comment_parent_id', 'user_id'
     ];
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////

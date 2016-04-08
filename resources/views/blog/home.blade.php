@@ -35,7 +35,7 @@
                 
     </div>
     
-    <div class="comment-block-panel">
+    <div class="comment-link-panel">
         
         <a href="{{ route('blog::post.show', ['post' => $post->id]) }}" alt="Full Post Link" title="Full Post Link">Full Post and Comments</a>
         
