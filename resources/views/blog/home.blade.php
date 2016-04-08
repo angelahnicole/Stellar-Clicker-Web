@@ -16,6 +16,10 @@
 
 <section class="window" id="home">
     
+    <div class="container-fluid text-center">
+        {!! $posts->render() !!}
+    </div>
+    
     @foreach ($posts as $post)
     
     <div class="front-page-header"><div class="row">
@@ -29,6 +33,12 @@
                 
         {!! $post->body_text !!}
                 
+    </div>
+    
+    <div class="comment-block-panel">
+        
+        <a href="{{ route('blog::post.show', ['post' => $post->id]) }}" alt="Full Post Link" title="Full Post Link">Full Post and Comments</a>
+        
     </div>
     
     @endforeach
