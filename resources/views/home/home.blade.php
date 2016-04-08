@@ -90,7 +90,7 @@
         <div class="col-xs-11"><h2>Game Wiki <small>What does it mean?</small></h2></div>
     </div></div>
     
-    <a href="http://stellarclicker.wikia.com" class="banner-link-wiki" title="Game Wiki Link"></a>
+    <a href="http://wiki.stellar.polymorphixgaming.com" class="banner-link-wiki" title="Game Wiki Link"></a>
     
 </section> <!-- /GAME WIKI -->
 

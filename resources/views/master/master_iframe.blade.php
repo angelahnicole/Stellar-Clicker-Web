@@ -8,6 +8,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('imx/favicon.ico')}}" />
     
     @include('master._partials.assets')
+    @yield('assets')
     
     <link rel="stylesheet" href="{{ asset('css/iframe.css') }}">
         
