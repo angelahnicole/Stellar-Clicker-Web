@@ -32,13 +32,13 @@ class BlogCommentTableSeeder extends Seeder
                      ->make(['blog_post_id' => $blogPost->id]));
             
             // Make the comments a tiny bit nested
-            foreach($blogPost->comments as $comment)
-            {
-                // Nesting every comment for testing
-                $comment->children()
-                        ->saveMany(factory(App\Models\BlogComment::class, rand(2, 5))
-                        ->make(['blog_post_id' => $blogPost->id, 'blog_comment_parent_id' => $comment->id]));
-            }
+//            foreach($blogPost->comments as $comment)
+//            {
+//                // Nesting every comment for testing
+//                $comment->children()
+//                        ->saveMany(factory(App\Models\BlogComment::class, rand(2, 5))
+//                        ->make(['blog_post_id' => $blogPost->id, 'blog_comment_parent_id' => $comment->id]));
+//            }
         }
     }
     

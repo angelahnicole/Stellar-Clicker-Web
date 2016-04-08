@@ -107,6 +107,7 @@ $factory->define(App\Models\BlogComment::class, function (Faker\Generator $faker
         'body_text' => $faker->paragraphs(3, true),
         'blog_comment_parent_id' => NULL,
         'blog_post_id' => 1,
+        'created_at' => $faker->dateTimeBetween('-1 years', 'now'),
         'user_id' => function()
         {
             $userCount = App\Models\User::all()->count();
