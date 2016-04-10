@@ -23,7 +23,7 @@ class BlogComment extends Model
      *
      * @var string
      */
-    protected $table = 'stellar_blog_comment';
+    protected $table = 'blog_comments';
     
     /**
      * The attributes that are mass assignable.

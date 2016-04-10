@@ -23,7 +23,7 @@ class BlogPost extends Model
      *
      * @var string
      */
-    protected $table = 'stellar_blog_post';
+    protected $table = 'blog_posts';
     
     /**
      * The attributes that are mass assignable.

@@ -20,7 +20,7 @@
     
     <div class="front-page-panel">
                 
-        {!! $post->body_text !!}
+        {!!  Markdown::convertToHtml($post->body_text) !!}
         
         <hr/>
         
@@ -39,9 +39,8 @@
 @section('scripts')
 @parent
 
-<meta name="csrf-token" content="{{ csrf_token() }}">
-
 <script>
+    
     
     $(document).ready(function()
     {

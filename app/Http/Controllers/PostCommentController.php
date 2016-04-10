@@ -2,30 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
 use App\Models\BlogComment;
-use App\Models\Group;
 
 // ===============================================================================================================
 // Post Comment Controller
 // ---------------------------------------------------------------------------------------------------------------
 // Stellar Clicker
 // https://github.com/angelahnicole/Stellar-Clicker-Web
-// Angela Gross
+// Angela Grossd
 // ---------------------------------------------------------------------------------------------------------------
 // This controller works with the jQuery comments library to get, create, edit, and delete comments.
 // ===============================================================================================================
 
 class PostCommentController extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
     /**
@@ -38,22 +31,24 @@ class PostCommentController extends BaseController
     public function index($post)
     {
         $formatComments = array();
-        $adminGroupID = Group::where('name', 'admin')->first()->id;
+        
+        // Get currently logged in user
+        $user = \Sentinel::check();
         
         foreach(BlogComment::where('blog_post_id', $post)->get() as $comment)
         {
             $formatComments[] =
-            array 
-            (
+            [
                 'id' => (int)$comment->id,
+                'user_id' => (int)$comment->user->id,
                 'blog_comment_parent_id' => $comment->blog_comment_parent_id ? (int)$comment->blog_comment_parent_id : null,
                 'created_at' => '' . $comment->created_at,
                 'updated_at' => '' . $comment->updated_at,
                 'body_text' => $comment->body_text,
                 'username' => $comment->user->username,
-                'created_by_admin' => $comment->user->group_id == $adminGroupID,
-                'created_by_current_user' => true
-            ); 
+                'created_by_admin' => $comment->user->inRole('admin') || $comment->user->inRole('blogger'),
+                'created_by_current_user' =>  $user && ($user->id === $comment->user->id)
+            ]; 
         }
         
         return Response::make(json_encode($formatComments), 200, array('Content-Type' => 'application/json'));
@@ -71,12 +66,15 @@ class PostCommentController extends BaseController
     {
         $comment = null;
         
+        // Get currently logged in user
+        $user = \Sentinel::check();
+        
         if($request->input('blog_comment_parent_id'))
         {
             $comment = BlogComment::create
             (
                 [
-                    'user_id' => 1,
+                    'user_id' => (int)$user->id,
                     'body_text' => $request->input('body_text'),
                     'blog_post_id' => (int)$post,
                     'blog_comment_parent_id' => (int)$request->input('blog_comment_parent_id')
@@ -88,7 +86,7 @@ class PostCommentController extends BaseController
             $comment = BlogComment::create
             (
                 [
-                    'user_id' => 1,
+                    'user_id' => (int)$user->id,
                     'body_text' => $request->input('body_text'),
                     'blog_post_id' => (int)$post
                 ]

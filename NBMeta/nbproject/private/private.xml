@@ -2,26 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/composer.json</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/gulpfile.js</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/resources/assets/less/app.less</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/_ide_helper.php</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/resources/views/master/_partials/navigation.blade</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/database/migrations/2016_03_23_035604_create_initial_database.php</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/resources/views/master/_partials/assets.blade</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/flarum/vendor/flarum/core/views/app.blade.php</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/flarum/vendor/flarum/core/views/index.blade.php</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/flarum/vendor/flarum/core/views/install/app.php</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/resources/views/wiki.blade.php</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/resources/assets/less/bootstrap/bootstrap.less</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/app/Http/routes.php</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/app/User.php</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/flarum/vendor/flarum/core/src/Asset/LessCompiler.php</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/public/js/all.js</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/flarum/vendor/flarum/core/views/admin.blade.php</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/resources/views/master/master.blade</file>
-            <file>file:/E:/Documents/Netbeans%20Projects/StellarClickerWeb/resources/views/master/_partials/notifications.blade</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -12,7 +12,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Route::group(['middleware' => ['web']], function () 
+Route::group(['middleware' => ['web', 'sentinel.auth']], function () 
 {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -33,17 +33,29 @@ Route::group(['middleware' => ['web']], function ()
             // Contains routes for index, create, store, show, edit, update, and destroy
             // ---------------------------------------------------------------------------
             Route::resource('post', 'PostController');
+            Route::get('post/manage/all', 'PostController@manage')->name('post.manage');
             
             // ---------------------------------------------------------------------------
             // USER RESOURCE CONTROLLER
             // Handles logging in, registering, redirecting users to their home page, and
             // contains routes for create, store, edit, update, and destroy
             // ---------------------------------------------------------------------------
-            Route::resource("user", "UserController", ['except' => ['index', 'show']]);
+            Route::resource("user", "UserController", ['except' => ['show', 'index', 'create']]);
             Route::group(['as' => 'user.'], function () 
             {
+                // Logging in and out
                 Route::get('user/login', 'UserController@login')->name('login');
-                Route::get('home', 'UserController@home')->name('home');
+                Route::post('user/login', 'UserController@validateLogin')->name('validateLogin');
+                Route::get('user/logout', 'UserController@logout')->name('logout');
+                
+                // Password reset
+                Route::get('user/password/email', 'UserController@createReset')->name('createReset');
+                Route::post('user/password/email', 'UserController@storeReset')->name('storeReset');
+                Route::get('user/password/reset/{id}/{token}', 'UserController@editPassword')->name('editPassword');
+                Route::post('user/password/reset/{id}/{token}', 'UserController@updatePassword')->name('updatePassword');
+                
+                // User administration
+                Route::get('user/manage/all', 'UserController@manage')->name('manage');
             });
         });
         
@@ -84,7 +96,8 @@ Route::group(['middleware' => ['web']], function ()
     });
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
