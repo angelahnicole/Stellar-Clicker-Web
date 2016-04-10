@@ -89,9 +89,9 @@ class SentinelMiddleware
                 return $next($request);
             }
             // Allow a logged in user to update / destroy a comment only if the comment belongs to them
-            elseif($request->has('id') && ($action === 'api.post.comment.update' || $action === 'api.post.comment.destroy'))
+            elseif($request->comment && ($action == 'api.post.comment.update' || $action == 'api.post.comment.destroy'))
             {
-                $comment = BlogComment::find($request->input('id'));
+                $comment = BlogComment::find($request->comment);
 
                 if($comment && $comment->user->id == $user->id)
                 {

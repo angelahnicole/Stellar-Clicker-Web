@@ -93,6 +93,9 @@ class PostCommentController extends BaseController
             );
         }
         
+        $comment['created_by_admin'] = $user->inRole('admin') || $user->inRole('blogger');
+        $comment['created_by_current_user'] = true;
+        
         return Response::make($comment->toJson(), 200, array('Content-Type' => 'application/json'));
     }
     
@@ -107,7 +110,11 @@ class PostCommentController extends BaseController
      */
     public function update(Request $request, $post, $comment)
     {
+        // Get comment to update
         $updatedComment = BlogComment::find($comment);
+        
+        // Get currently logged in user
+        $user = \Sentinel::check();
 
         $updatedComment->update
         (
