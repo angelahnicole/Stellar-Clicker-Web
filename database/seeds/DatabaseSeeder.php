@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Create predefined user groups
-        $this->call(GroupTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
         
         // Create users
         $this->call(UserTableSeeder::class);

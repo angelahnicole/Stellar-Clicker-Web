@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 // ===============================================================================================================
-// Group Table Seeder
+// Role Table Seeder
 // ---------------------------------------------------------------------------------------------------------------
 // Stellar Clicker
 // https://github.com/angelahnicole/Stellar-Clicker-Web
@@ -12,7 +12,7 @@ use Illuminate\Database\Seeder;
 // Creates the four different permission user groups for the database.
 // ===============================================================================================================
 
-class GroupTableSeeder extends Seeder
+class RoleTableSeeder extends Seeder
 {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -23,40 +23,46 @@ class GroupTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Models\Group::create
+        
+        // CREATE ADMINISTRATOR
+        Sentinel::getRoleRepository()->createModel()->create
         ([
-            'name' => 'admin',
-            'manage_users' => true,
-            'manage_blog_posts' => true,
-            'blog_post' => true,
-            'blog_comment' => true
+            'name' => 'Admin',
+            'slug' => 'admin',
+            'permissions' => 
+            [
+                'api.post.comment.store' => true,
+                'api.post.comment.update' => true,
+                'api.post.comment.destroy' => true,
+                'blog::post.manage' => true,
+                'blog::post.store' => true,
+                'blog::post.create' => true,
+                'blog::post.destroy' => true,
+                'blog::post.update' => true,
+                'blog::post.edit' => true,
+                'blog::user.manage' => true,
+                'blog::user.store' => true,
+                'blog::user.create' => true,
+                'blog::user.destroy' => true,
+                'blog::user.update' => true,
+                'blog::user.edit' => true
+            ],
         ]);
         
-        App\Models\Group::create
+        // CREATE BLOGGER
+        Sentinel::getRoleRepository()->createModel()->create
         ([
-            'name' => 'blogger',
-            'manage_users' => false,
-            'manage_blog_posts' => false,
-            'blog_post' => true,
-            'blog_comment' => true
-        ]);
-        
-        App\Models\Group::create
-        ([
-            'name' => 'user',
-            'manage_users' => false,
-            'manage_blog_posts' => false,
-            'blog_post' => false,
-            'blog_comment' => true
-        ]);
-        
-        App\Models\Group::create
-        ([
-            'name' => 'throttled_user',
-            'manage_users' => false,
-            'manage_blog_posts' => false,
-            'blog_post' => false,
-            'blog_comment' => false
+            'name' => 'Blogger',
+            'slug' => 'blogger',
+            'permissions' => 
+            [
+                'blog::post.manage' => true,
+                'blog::post.store' => true,
+                'blog::post.create' => true,
+                'blog::post.destroy' => true,
+                'blog::post.update' => true,
+                'blog::post.edit' => true,
+            ],
         ]);
     }
     

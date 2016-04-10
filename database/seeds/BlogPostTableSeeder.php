@@ -24,11 +24,13 @@ class BlogPostTableSeeder extends Seeder
      */
     public function run()
     {
+        // Get roles
+        $adminRole = Sentinel::findRoleByName('Admin');
+        $bloggerRole = Sentinel::findRoleByName('Blogger');
+        
         // Get admins and bloggers
-        $adminID = App\Models\Group::where('name', 'admin')->first()->id;
-        $bloggerID = App\Models\Group::where('name', 'blogger')->first()->id;
-        $adminUsers = App\Models\User::where('group_id', $adminID)->get();
-        $bloggerUsers = App\Models\User::where('group_id', $bloggerID)->get();
+        $adminUsers = $adminRole->users()->with('roles')->get();
+        $bloggerUsers = $bloggerRole->users()->with('roles')->get();
         
         // Create blog posts for the admin and blogger users
         $adminUsers->each(function($user)

@@ -1,7 +1,5 @@
 <?php
 
-use GrahamCampbell\Markdown\Facades\Markdown;
-
 // ===============================================================================================================
 // Model Factories
 // ---------------------------------------------------------------------------------------------------------------
@@ -14,75 +12,20 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 // ===============================================================================================================
 
 // ------------------------------------------------------------------------------------------------------
-// STELLAR_USER (admin user)
+// USERS
 // ------------------------------------------------------------------------------------------------------
-$factory->defineAs(App\Models\User::class, 'admin', function (Faker\Generator $faker) 
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) 
 {
     return 
     [
         'email' => $faker->safeEmail,
         'username' => $faker->userName,
         'password' => bcrypt('secret'),
-        'group_id' => function()
-        {
-            return App\Models\Group::where('name', 'admin')->first()->id; 
-        }
     ];
 });
 
 // ------------------------------------------------------------------------------------------------------
-// STELLAR_USER (normal user)
-// ------------------------------------------------------------------------------------------------------
-$factory->defineAs(App\Models\User::class, 'normal', function (Faker\Generator $faker) 
-{
-    return 
-    [
-        'email' => $faker->safeEmail,
-        'username' => $faker->userName,
-        'password' => bcrypt('normal'),
-        'group_id' => function()
-        {
-            return App\Models\Group::where('name', 'user')->first()->id; 
-        }
-    ];
-});
-
-// ------------------------------------------------------------------------------------------------------
-// STELLAR_USER (blog posting user)
-// ------------------------------------------------------------------------------------------------------
-$factory->defineAs(App\Models\User::class, 'blogger', function (Faker\Generator $faker) 
-{
-    return 
-    [
-        'email' => $faker->safeEmail,
-        'username' => $faker->userName,
-        'password' => bcrypt('blogger'),
-        'group_id' => function()
-        {
-            return App\Models\Group::where('name', 'blogger')->first()->id; 
-        }
-    ];
-});
-
-// ------------------------------------------------------------------------------------------------------
-// STELLAR_USER (throttled user)
-// ------------------------------------------------------------------------------------------------------
-$factory->defineAs(App\Models\User::class, 'throttled', function (Faker\Generator $faker) 
-{
-    return 
-    [
-        'email' => $faker->unique()->safeEmail,
-        'username' => $faker->unique()->userName,
-        'password' => bcrypt('throttled'),
-        'group_id' => function()
-        {
-            return App\Models\Group::where('name', 'throttled_user')->first()->id; 
-        }
-    ];
-});
-
-// ------------------------------------------------------------------------------------------------------
-// STELLAR_BLOG_POST: Made to be created after users are created.
+// BLOG_POSTS: Made to be created after users are created.
 // ------------------------------------------------------------------------------------------------------
 $factory->define(App\Models\BlogPost::class, function (Faker\Generator $faker) 
 {
@@ -90,14 +33,13 @@ $factory->define(App\Models\BlogPost::class, function (Faker\Generator $faker)
     return 
     [
         'title_text' => $faker->words(3, true),
-        'body_text' => Markdown::convertToHtml($faker->paragraphs(20, true)),
-        'slug_text' => $faker->unique()->slug,
+        'body_text' => $faker->paragraphs(20, true),
         'created_at' => $faker->dateTimeBetween('-1 years', 'now'),
     ];
 });
 
 // ------------------------------------------------------------------------------------------------------
-// STELLAR_BLOG_COMMENT: Made to be created after posts and users are created. Uses a random pre-existing
+// BLOG_COMMENTS: Made to be created after posts and users are created. Uses a random pre-existing
 // user as the author of this comment.
 // ------------------------------------------------------------------------------------------------------
 $factory->define(App\Models\BlogComment::class, function (Faker\Generator $faker) 

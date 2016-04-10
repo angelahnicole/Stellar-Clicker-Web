@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cartalyst\Sentinel\Users\EloquentUser as CartalystUser;
 
 // ===============================================================================================================
 // User
@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 // An Eloquent model that represents a user in the stellar clicker database
 // ===============================================================================================================
 
-class User extends Authenticatable
+class User extends CartalystUser
 {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -23,7 +23,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'stellar_user';
+    protected $table = 'users';
     
     /**
      * The attributes that are mass assignable.
@@ -32,7 +32,10 @@ class User extends Authenticatable
      */
     protected $fillable = 
     [
-        'name', 'email', 'password',
+        'email',
+        'username', 
+        'password',
+        'permissions',
     ];
 
     /**
@@ -46,14 +49,6 @@ class User extends Authenticatable
     ];
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    /**
-     * Get the group that the user belongs to
-     */
-    public function group()
-    {
-        return $this->belongsTo('App\Models\Group', 'group_id', 'id');
-    }
     
     /**
      * Get the comments written by the user

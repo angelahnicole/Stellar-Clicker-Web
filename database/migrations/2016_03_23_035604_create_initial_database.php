@@ -24,58 +24,28 @@ class CreateInitialDatabase extends Migration
      */
     public function up()
     {
-        // ------------------------------------------------------------------------------------------------------
-        // STELLAR_GROUP -> Drop table and create it
-        // ------------------------------------------------------------------------------------------------------
-        Schema::dropIfExists('stellar_group');
-        Schema::create('stellar_group', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->string('name')->unique();
-            $table->boolean('manage_users')->default(false);
-            $table->boolean('manage_blog_posts')->default(false);
-            $table->boolean('blog_post')->default(false);
-            $table->boolean('blog_comment')->default(false);
-            $table->timestamps();
-        });
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
         // ------------------------------------------------------------------------------------------------------
-        // STELLAR_USER -> Drop table and create it
+        // BLOG_POSTS -> Drop table and create it
         // ------------------------------------------------------------------------------------------------------
-        Schema::dropIfExists('stellar_user');
-        Schema::create('stellar_user', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->integer('group_id')->unsigned();
-            $table->string('email')->unique();
-            $table->string('username', 100)->unique();
-            $table->string('password', 100);
-            $table->timestamps();
-            
-            $table->foreign('group_id')->references('id')->on('stellar_group');
-        });
-        
-        // ------------------------------------------------------------------------------------------------------
-        // STELLAR_BLOG_POST -> Drop table and create it
-        // ------------------------------------------------------------------------------------------------------
-        Schema::dropIfExists('stellar_blog_post');
-        Schema::create('stellar_blog_post', function(Blueprint $table)
+        Schema::dropIfExists('blog_posts');
+        Schema::create('blog_posts', function(Blueprint $table)
         {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->text('title_text');
             $table->text('body_text');
-            $table->string('slug_text', 100)->unique();
             $table->timestamps();
             
-            $table->foreign('user_id')->references('id')->on('stellar_user');
+            $table->foreign('user_id')->references('id')->on('users');
         });
         
         // ------------------------------------------------------------------------------------------------------
-        // STELLAR_BLOG_COMMENT -> Drop table and create it
+        // BLOG_COMMENTS -> Drop table and create it
         // ------------------------------------------------------------------------------------------------------
-        Schema::dropIfExists('stellar_blog_comment');
-        Schema::create('stellar_blog_comment', function(Blueprint $table)
+        Schema::dropIfExists('blog_comments');
+        Schema::create('blog_comments', function(Blueprint $table)
         {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
@@ -84,10 +54,12 @@ class CreateInitialDatabase extends Migration
             $table->text('body_text');
             $table->timestamps();
             
-            $table->foreign('user_id')->references('id')->on('stellar_user');
-            $table->foreign('blog_post_id')->references('id')->on('stellar_blog_post');
-            $table->foreign('blog_comment_parent_id')->references('id')->on('stellar_blog_comment');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('blog_post_id')->references('id')->on('blog_posts');
+            $table->foreign('blog_comment_parent_id')->references('id')->on('blog_comments');
         });
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     /**
@@ -98,10 +70,8 @@ class CreateInitialDatabase extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::dropIfExists('stellar_blog_comment');
-        Schema::dropIfExists('stellar_blog_post');
-        Schema::dropIfExists('stellar_user');
-        Schema::dropIfExists('stellar_group');
+        Schema::dropIfExists('blog_comments');
+        Schema::dropIfExists('blog_posts');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
     }

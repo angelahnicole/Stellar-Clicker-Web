@@ -25,10 +25,24 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         // Create random users
-        $adminUsers = factory(App\Models\User::class, 'admin', 2)->create();
-        $bloggerUsers = factory(App\Models\User::class, 'blogger', 5)->create();
-        $normalUsers = factory(App\Models\User::class, 'normal', 30)->create();
-        $throttledUsers = factory(App\Models\User::class, 'throttled', 5)->create();
+        $adminUsers = factory(App\Models\User::class, 2)->create();
+        $bloggerUsers = factory(App\Models\User::class, 5)->create();
+        $normalUsers = factory(App\Models\User::class, 30)->create();
+        
+        // Get roles
+        $adminRole = Sentinel::findRoleByName('Admin');
+        $bloggerRole = Sentinel::findRoleByName('Blogger');
+        
+        // Assign roles
+        foreach($adminUsers as $user)
+        {
+            $adminRole->users()->attach($user);
+        }
+        foreach($bloggerUsers as $user)
+        {
+            $bloggerRole->users()->attach($user);
+        }
+        
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
