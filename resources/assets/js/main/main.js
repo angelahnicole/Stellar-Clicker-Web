@@ -19,11 +19,13 @@ $(document).on('scroll', function (e)
 {
     if($(document).scrollTop() === 0)
     {
+        $('.navbar').css('background-color', '#FFF');
         $('.navbar').css('opacity', 1.0);
     }
     else
     {
-        $('.navbar').css('opacity', 0.2);
+        $('.navbar').css('background-color', '#000');
+        $('.navbar').css('opacity', 0.1);
     }
     
 });
@@ -38,17 +40,41 @@ $(document).ready(function()
    $('.navbar').hover
     (function() // hover in
     {
+        $('.navbar').css('background-color', '#FFF');
         $('.navbar').css('opacity', 1.0);
     },
     function() // hover out
     {
         if($(document).scrollTop() !== 0)
         {
-            $('.navbar').css('opacity', 0.2);
+            $('.navbar').css('background-color', '#000');
+            $('.navbar').css('opacity', 0.1);
         }
     }); 
    
 });
+
+// ===========================================================================================================================
+// DISABLE REPLYING
+// --------------------------------------------------------------------------------------------------------------------------
+// Hides commenting/replying functionality
+// ===========================================================================================================================
+function disableReplying()
+{
+    $('#comments-container').find('.commenting-field.main').hide();
+    $('#comments-container').find('.action.reply').hide();
+}
+
+// ===========================================================================================================================
+// ENABLE REPLYING
+// --------------------------------------------------------------------------------------------------------------------------
+// Shows commenting/replying functionality
+// ===========================================================================================================================
+function enableReplying()
+{
+    $('#comments-container').find('.commenting-field.main').show();
+    $('#comments-container').find('.action.reply').show();
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

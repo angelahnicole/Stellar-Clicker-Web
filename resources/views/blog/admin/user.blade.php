@@ -75,6 +75,8 @@
                         </div>
                     </div>
                     
+                    @if(\Sentinel::getUser()->inRole('admin'))
+                    
                     <div class="form-group">
                         <label class="col-md-4 control-label">Admin Role</label>
 
@@ -91,6 +93,8 @@
                         </div>
                     </div>
                     
+                    @endif
+                    
                     <div class="form-group{{ isset($errors) && $errors->has('sentinel_edit') ? ' has-error' : '' }}">
                         <div class="col-md-4"></div>
                         @if (isset($errors) && $errors->has('sentinel_edit'))
@@ -105,7 +109,7 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-btn fa-user"></i>Edit
+                                <i class="fa fa-btn fa-user"></i> Edit
                             </button>
                         </div>
                     </div>

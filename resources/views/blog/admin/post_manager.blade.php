@@ -13,6 +13,10 @@
     
     <div class="front-page-panel">
         
+        <a class="btn btn-default pull-right" href="{{ route('blog::post.create') }}" style="margin-bottom:10px">
+            <i class="fa fa-btn fa-plus-square" style="color: #97D27A;"></i> Create New Blog Post
+        </a>
+        
         <table class="table table-striped">
             
             <tr>
@@ -29,8 +33,8 @@
                 <td>{{ $post->title_text }}</td>
                 <td>{{ $post->created_at }}</td>
                 <td>{{ $post->user->username }}</td>
-                <td><a href="{{ route('blog::post.edit', ['post' => $post->id]) }}"><span class="fa fa-edit"></a><span class="sr-only"> Edit</span></a></td>
-                <td><a href="{{ route('blog::post.destroy', ['post' => $post->id]) }}"><span class="fa fa-remove"></a><span class="sr-only"> Delete</span></a></td>
+                <td><a style="color: #7B3599;" href="{{ route('blog::post.edit', ['post' => $post->id]) }}"><span class="fa fa-edit"></a><span class="sr-only"> Edit</span></a></td>
+                <td><a style="color: #D62020;" href="{{ route('blog::post.destroy', ['post' => $post->id]) }}"><span class="fa fa-remove"></a><span class="sr-only"> Delete</span></a></td>
             </tr>
             
             @endforeach

@@ -15,12 +15,12 @@
     
     <div class="front-page-header"><div class="row">
         <div class="col-xs-1"><div class="front-page-tag"><span class="glyphicon icon-blog"></div></div>
-        <div class="col-xs-11"><h2>The Post Editor <small>Ahhh yeah.</small></h2></div>
+        <div class="col-xs-11"><h2>The Post Editor</h2></div>
     </div></div>
     
     <div class="front-page-panel">
         
-        @if($post)
+        @if(isset($post) && $post)
             <form class="form-horizontal" role="form" method="POST" action="{{ route('blog::post.update', ['id' => $post->id]) }}">
                 {!! csrf_field() !!}
 
@@ -41,21 +41,22 @@
                     <textarea id='body_text' name='body_text'>{{ $post->body_text }}</textarea>
 
                     <div class="form-group">
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-block">
-                                <i class="fa fa-btn fa-sign-in"></i> Edit
-                        </div>
+                    <div class="col-md-offset-4 col-md-4">
+                        <button type="submit" class="btn btn-default btn-block" style="margin-top:10px">
+                            <i class="fa fa-btn fa-plus-square" style="color: #7B3599;"></i> Edit
+                        </button>
                     </div>
+                </div>
 
             </form>
         @else
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('blog::post.create', ['id' => $post->id]) }}">
+            <form class="form-horizontal" role="form" method="POST" action="{{ route('blog::post.store') }}">
             {!! csrf_field() !!}
 
                 <div class="form-group{{ isset($errors) && $errors->has('title') ? ' has-error' : '' }}">
-                    <label class="col-md-4 control-label">Post Title </label>
+                    <label class="col-md-1 control-label">Post Title </label>
 
-                    <div class="col-md-6">
+                    <div class="col-md-11">
                         <input type="text" class="form-control" name="title" value="{{ old('title') }}">
 
                         @if (isset($errors) && $errors->has('title'))
@@ -69,9 +70,9 @@
                 <textarea id='body_text' name='body_text'></textarea>
 
                 <div class="form-group">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fa fa-btn fa-sign-in"></i> Create
+                    <div class="col-md-offset-4 col-md-4">
+                        <button type="submit" class="btn btn-default btn-block" style="margin-top:10px">
+                            <i class="fa fa-btn fa-plus-square" style="color: #97D27A;"></i> Create
                         </button>
                     </div>
                 </div>

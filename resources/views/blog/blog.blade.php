@@ -24,6 +24,16 @@
         
         <hr/>
         
+        @if(\Sentinel::guest())
+        
+        <div class="row"><div class="col-md-12">
+            <a class="btn btn-default btn-block" href="{{ route('blog::user.login') }}" style="margin-bottom:10px">
+                <i class="fa fa-btn fa-sign-in"></i> Login to Comment
+            </a>
+        </div></div>
+        
+        @endif
+        
         <div id="comments-container"></div>
 
                 
@@ -56,6 +66,9 @@
         ({
             enableUpvoting: false,
             enableEditing: true,
+            @if(\Sentinel::guest())
+            enableReplying: false,
+            @endif
             
             fieldMappings: 
             {
@@ -134,9 +147,20 @@
                 });
             }
         });
+        
+        @if(\Sentinel::guest())
+
+        $(window).load(function()
+        {
+           disableReplying(); 
+        });
+
+        @endif
     });
     
 </script>
+
+
 
 @stop
 
