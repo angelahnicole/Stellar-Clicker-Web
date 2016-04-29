@@ -34,7 +34,20 @@
                 <td>{{ $post->created_at }}</td>
                 <td>{{ $post->user->username }}</td>
                 <td><a style="color: #7B3599;" href="{{ route('blog::post.edit', ['post' => $post->id]) }}"><span class="fa fa-edit"></a><span class="sr-only"> Edit</span></a></td>
-                <td><a style="color: #D62020;" href="{{ route('blog::post.destroy', ['post' => $post->id]) }}"><span class="fa fa-remove"></a><span class="sr-only"> Delete</span></a></td>
+                <tr>
+                    <td>{{ $post->title_text }}</td>
+                    <td>{{ $post->created_at }}</td>
+                    <td>{{ $post->user->username }}</td>
+                    <td><a style="color: #7B3599;" href="{{ route('blog::blog.post.edit', ['post' => $post->id]) }}"><span class="fa fa-edit"></span><span class="sr-only"> Edit</span></a></td>
+                    <td>
+                    <form class="form-horizontal" role="form" method="DELETE" action="{{ route('blog::post.destroy', ['post' => $post->id]) }}">
+                        {!! csrf_field() !!}
+                    <button type="submit" class="btn btn-default btn-block">
+                        <i class="fa fa-btn fa-remove" style="color: #7B3599;"></i> <span class="sr-only">Delete</span>
+                    </button>
+                    </form>
+                    </td>
+                </tr>
             </tr>
             
             @endforeach

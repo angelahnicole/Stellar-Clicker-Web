@@ -170,19 +170,54 @@ class PostController extends BaseController
      */
     public function update(Request $request, $post)
     {
-        
-    }
-    
-    /**
-     * Deletes a pre-existing blog post
-     * 
-     * @param int $post Post ID
-     * 
-     */
-    public function destroy($post)
-    {
-        
-    }
+        // Get post to update
+        $updatedPost = BlogPost::find($post);
+
+        $rules =
+        [
+            'title' => 'required',
+            'body_text' => 'required'
+        ];
+
+        // Check rules
+        $validator = \Validator::make($request->all(), $rules);
+
+        if($validator->fails())
+        {
+            return redirect()->route('blog::post.edit')->withInput($request->all())->withErrors($validator);
+        }
+
+        $updatedPost->update
+        (
+            [
+                'title_text' => $request->input('title'),
+                'body_text' => $request->input('body_text')
+            ]
+        );
+
+        BaseController::addNotification('Blog successfully updated', 'success');
+
+        return redirect()->route('blog::home');
+        }
+
+        /**
+         * Deletes a pre-existing blog post
+         *
+         * @param int $post Post ID
+         *
+         */
+
+        public function destroy($post)
+        {
+             //get post
+            $deletedPost = BlogPost::find($post);
+
+
+            $deletedPost->delete();
+            BaseController::addNotification('Blog successfully deleted', 'success');
+            return redirect()->route('blog::home');
+        }
+
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
