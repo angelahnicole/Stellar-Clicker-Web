@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 use App\Models\BlogPost;
-use GrahamCampbell\Markdown\Facades\Markdown;
+use App\Models\BlogComment;
 
 // ===============================================================================================================
 // Post Controller
@@ -197,7 +198,7 @@ class PostController extends BaseController
 
         BaseController::addNotification('Blog successfully updated', 'success');
 
-        return redirect()->route('blog::home');
+        return redirect()->route('blog::post.manage');
         }
 
         /**
@@ -209,13 +210,21 @@ class PostController extends BaseController
 
         public function destroy($post)
         {
-             //get post
+            //get post
             $deletedPost = BlogPost::find($post);
-
-
+            
+            // delete comments- need to turn off foreign key checks because of child comments
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            $commentIDs = $deletedPost->comments->modelKeys();
+            BlogComment::whereIn('id', $commentIDs)->delete(); 
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+            
+            // delete post
             $deletedPost->delete();
+            
             BaseController::addNotification('Blog successfully deleted', 'success');
-            return redirect()->route('blog::home');
+            
+            return redirect()->route('blog::post.manage');
         }
 
     

@@ -30,24 +30,19 @@
             @foreach ($posts as $post)
             
             <tr>
-                <td>{{ $post->title_text }}</td>
+                <td><a href="{{ route('blog::post.show', ['post' => $post->id]) }}" alt="Full Post Link" title="Full Post Link">{{ $post->title_text }}</a></td>
                 <td>{{ $post->created_at }}</td>
                 <td>{{ $post->user->username }}</td>
-                <td><a style="color: #7B3599;" href="{{ route('blog::post.edit', ['post' => $post->id]) }}"><span class="fa fa-edit"></a><span class="sr-only"> Edit</span></a></td>
-                <tr>
-                    <td>{{ $post->title_text }}</td>
-                    <td>{{ $post->created_at }}</td>
-                    <td>{{ $post->user->username }}</td>
-                    <td><a style="color: #7B3599;" href="{{ route('blog::blog.post.edit', ['post' => $post->id]) }}"><span class="fa fa-edit"></span><span class="sr-only"> Edit</span></a></td>
-                    <td>
-                    <form class="form-horizontal" role="form" method="DELETE" action="{{ route('blog::post.destroy', ['post' => $post->id]) }}">
+                <td><a class="btn btn-link" style="color: #7B3599;" href="{{ route('blog::post.edit', ['post' => $post->id]) }}"><span class="fa fa-edit"><span class="sr-only"> Edit</span></a></td>
+                <td>
+                    <form role="form" class="form-inline" method="POST" action="{{ route('blog::post.destroy', ['post' => $post->id]) }}">
                         {!! csrf_field() !!}
-                    <button type="submit" class="btn btn-default btn-block">
-                        <i class="fa fa-btn fa-remove" style="color: #7B3599;"></i> <span class="sr-only">Delete</span>
-                    </button>
+                        {!! method_field('delete') !!}
+                        <button type="submit" class="btn btn-link" data-confirm="Are you sure?">
+                            <i class="fa fa-btn fa-remove" style="color: #7B3599;"></i> <span class="sr-only">Delete</span>
+                        </button>
                     </form>
-                    </td>
-                </tr>
+                </td>
             </tr>
             
             @endforeach

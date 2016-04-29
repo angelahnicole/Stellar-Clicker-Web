@@ -21,8 +21,9 @@
     <div class="front-page-panel">
         
         @if(isset($post) && $post)
-            <form class="form-horizontal" role="form" method="PUT" action="{{ route('blog::post.update', ['id' => $post->id]) }}">
+            <form class="form-horizontal" role="form" method="POST" action="{{ route('blog::post.update', ['id' => $post->id]) }}">
                 {!! csrf_field() !!}
+                {!! method_field('put') !!}
 
                     <div class="form-group{{ isset($errors) && $errors->has('title') ? ' has-error' : '' }}">
                         <label class="col-md-1 control-label">Post Title </label>
