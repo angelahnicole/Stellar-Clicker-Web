@@ -224,6 +224,39 @@ class UserController extends BaseController
     public function update(Request $request, $user)
     {
         // this will be very similar to store
+        // Get post to update
+            $updateUser = User::find($user);
+
+            $rules =
+            [
+                'username' => 'required|unique:users,username',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|confirmed'
+
+
+            ];
+
+            // Check rules
+            $validator = \Validator::make($request->all(), $rules);
+
+            if($validator->fails())
+            {
+                return redirect()->route('blog::user.edit')->withInput($request->all())->withErrors($validator);
+            }
+
+            $updatePost->update
+            (
+                [
+                    'username' => $request->input('username'),
+                    'email' => $request->input('email'),
+                    'password' => $request->input('password'),
+                    
+                ]
+            );
+
+            BaseController::addNotification('User successfully updated', 'success');
+
+            return redirect()->route('blog::home');
     }
     
     /**
@@ -236,7 +269,13 @@ class UserController extends BaseController
      */
     public function destroy(Request $request, $user)
     {
-        // this will be similar to PostCommentController's destroy method
+        //get 
+       $updateUser = User::find($user);
+
+
+       $updateUser->delete();
+       BaseController::addNotification('User successfully deleted', 'success');
+       return redirect()->route('blog::home');
     }
     
     /**
