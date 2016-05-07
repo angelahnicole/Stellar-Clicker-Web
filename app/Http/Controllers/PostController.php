@@ -159,7 +159,35 @@ class PostController extends BaseController
      */
     public function store(Request $request)
     {
-       
+       $post = null;
+         // Get currently logged in user
+        $user = \Sentinel::check();
+
+        $rules =
+            [
+                'title' => 'required',
+                'body_text' => 'required'
+            ];
+
+        // Check rules
+        $validator = \Validator::make($request->all(), $rules);
+
+
+        $post = BlogPost::create
+        (
+             [
+                 'user_id' => (int)$user->id,
+                 'title_text' => $request->input('title'),
+                 'body_text' => $request->input('body_text')
+
+             ]
+        );
+
+
+        BaseController::addNotification('Blog successfully created.', 'success');
+
+
+        return redirect()->route('blog::home');
     }
     
     /**
