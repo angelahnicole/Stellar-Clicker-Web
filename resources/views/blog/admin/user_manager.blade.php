@@ -28,8 +28,8 @@
             <tr>
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->email }}</td>
-                <td><input class="disabled" type="checkbox" name="is_admin" {{ $user->inRole('admin') ? 'checked' : '' }}></td>
-                <td><input class="disabled" type="checkbox" name="is_blogger" {{ $user->inRole('blogger') ? 'checked' : '' }}></td>
+                <td><input class="disabled" disabled="disabled" type="checkbox" name="is_admin" {{ $user->inRole('admin') ? 'checked' : '' }}></td>
+                <td><input class="disabled" disabled="disabled" type="checkbox" name="is_blogger" {{ $user->inRole('blogger') ? 'checked' : '' }}></td>
                 <td><a style="color: #7B3599;" href="{{ route('blog::user.edit', ['user' => $user->id]) }}"><span class="fa fa-edit"></a><span class="sr-only"> Edit</span></a></td>
             </tr>
             

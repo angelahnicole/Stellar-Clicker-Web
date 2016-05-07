@@ -32,7 +32,7 @@ class BlogPost extends Model
      */
     protected $fillable = 
     [
-        'title_text', 'body_text'
+        'title_text', 'body_text', 'user_id'
     ];
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////

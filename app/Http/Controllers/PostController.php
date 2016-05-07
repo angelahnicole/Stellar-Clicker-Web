@@ -159,35 +159,37 @@ class PostController extends BaseController
      */
     public function store(Request $request)
     {
-       $post = null;
-         // Get currently logged in user
+        // Get currently logged in user
         $user = \Sentinel::check();
 
         $rules =
-            [
-                'title' => 'required',
-                'body_text' => 'required'
-            ];
+        [
+            'title' => 'required',
+            'body_text' => 'required'
+        ];
 
         // Check rules
         $validator = \Validator::make($request->all(), $rules);
-
+        
+        if($validator->fails())
+        {
+            return redirect()->route('blog::post.create')->withInput($request->all())->withErrors($validator);
+        }
 
         $post = BlogPost::create
         (
-             [
-                 'user_id' => (int)$user->id,
-                 'title_text' => $request->input('title'),
-                 'body_text' => $request->input('body_text')
-
-             ]
+            [
+               'user_id' => (int)$user->id,
+               'title_text' => $request->input('title'),
+               'body_text' => $request->input('body_text')
+            ]
         );
 
 
         BaseController::addNotification('Blog successfully created.', 'success');
 
 
-        return redirect()->route('blog::home');
+        return redirect()->route('blog::post.manage');
     }
     
     /**
@@ -213,7 +215,7 @@ class PostController extends BaseController
 
         if($validator->fails())
         {
-            return redirect()->route('blog::post.edit')->withInput($request->all())->withErrors($validator);
+            return redirect()->route('blog::post.edit', ['post' => $post])->withInput($request->all())->withErrors($validator);
         }
 
         $updatedPost->update

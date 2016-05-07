@@ -223,40 +223,67 @@ class UserController extends BaseController
      */
     public function update(Request $request, $user)
     {
-        // this will be very similar to store
-        // Get post to update
-            $updateUser = User::find($user);
+        // Get user to update
+        $updateUser = User::find($user);
 
-            $rules =
+        $rules =
+        [
+            'username' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed'
+        ];
+
+        // Check rules
+        $validator = \Validator::make($request->all(), $rules);
+
+        if($validator->fails())
+        {
+            return redirect()->route('blog::user.edit', ['user' => $user])->withInput($request->except('password', 'password_confirmation'))->withErrors($validator);
+        }
+
+        $updateUser->update
+        (
             [
-                'username' => 'required|unique:users,username',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|confirmed'
+                'username' => $request->input('username'),
+                'email' => $request->input('email'),
+                'password' => $request->input('password')
+            ]
+        );
 
-
-            ];
-
-            // Check rules
-            $validator = \Validator::make($request->all(), $rules);
-
-            if($validator->fails())
+        // if the current user is an admin, allow them to change user privs if the user isn't already in that role
+        if(\Sentinel::getUser()->inRole('admin'))
+        {
+            $adminRole = \Sentinel::findRoleByName('Admin');
+            if( !$updateUser->inRole('admin') && $request->input('admin_role') )
             {
-                return redirect()->route('blog::user.edit')->withInput($request->all())->withErrors($validator);
+                $adminRole->users()->attach($updateUser);
+            }
+            else if( $updateUser->inRole('admin') && !$request->input('admin_role') )
+            {
+                $adminRole->users()->detach($updateUser);
             }
 
-            $updatePost->update
-            (
-                [
-                    'username' => $request->input('username'),
-                    'email' => $request->input('email'),
-                    'password' => $request->input('password'),
-                    
-                ]
-            );
+            $bloggerRole = \Sentinel::findRoleByName('Blogger');
+            if( !$updateUser->inRole('blogger') && $request->input('blogger_role') )
+            {
+                $bloggerRole->users()->attach($updateUser);
+            }
+            else if( $updateUser->inRole('blogger') && !$request->input('blogger_role') )
+            {
+                $bloggerRole->users()->detach($updateUser);
+            }
+        }
 
-            BaseController::addNotification('User successfully updated', 'success');
-
-            return redirect()->route('blog::home');
+        BaseController::addNotification('User successfully updated', 'success');
+        
+        if(\Sentinel::getUser()->inRole('admin'))
+        {
+            return redirect()->route('blog::user.manage');
+        }
+        else
+        {
+            return redirect()->route('blog::user.edit', ['user' => $user]);
+        }
     }
     
     /**
@@ -272,10 +299,11 @@ class UserController extends BaseController
         //get 
        $updateUser = User::find($user);
 
-
        $updateUser->delete();
+       
        BaseController::addNotification('User successfully deleted', 'success');
-       return redirect()->route('blog::home');
+       
+       return redirect()->route('blog::user.manage');
     }
     
     /**

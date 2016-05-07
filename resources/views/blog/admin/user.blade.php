@@ -18,6 +18,7 @@
             <div class="panel-body">
                 <form class="form-horizontal" role="form" method="POST" action="{{ route('blog::user.update', ['user' => $user->id]) }}">
                     {!! csrf_field() !!}
+                    {!! method_field('put') !!}
 
                     <div class="form-group{{ isset($errors) && $errors->has('username') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label">Username</label>
